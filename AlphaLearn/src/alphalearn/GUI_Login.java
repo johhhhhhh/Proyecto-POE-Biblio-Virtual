@@ -171,10 +171,9 @@ public class GUI_Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
         Usuario[] usuarios = {
             new Usuario("johan", "johan"),
-            new Usuario("user1", "pass1"),
-            new Usuario("user2", "pass2"),
-            new Usuario("user3", "pass3"),
-            new Usuario("user4", "pass4")
+            new Usuario("ivan", "ivan"),
+            new Usuario("gerardo", "gerardo"),
+            new Usuario("carlos", "carlos"),
         };
 
         String user = txtUsuario.getText();
