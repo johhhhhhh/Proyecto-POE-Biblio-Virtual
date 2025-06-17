@@ -1,6 +1,7 @@
 package alphalearn;
 
 import java.awt.Cursor;
+import java.awt.Font;
 import java.util.Stack;
 import javax.swing.table.DefaultTableModel;
 
