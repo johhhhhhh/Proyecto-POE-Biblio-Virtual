@@ -34,7 +34,7 @@ public class GUI_Login extends javax.swing.JFrame {
         
         setCursor(defaultCursor);
         btnLogin.setCursor(handCursor);
-        btnRegistro.setCursor(handCursor);
+        
     }
     
     private void setBackgroundImage() {
@@ -54,7 +54,7 @@ public class GUI_Login extends javax.swing.JFrame {
         lblLogin = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        btnRegistro = new javax.swing.JButton();
+        
         btnLogin = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
         lblLogo = new javax.swing.JLabel();  // Nuevo JLabel para el logo
@@ -91,14 +91,7 @@ public class GUI_Login extends javax.swing.JFrame {
         lblPassword.setForeground(Colores.TEXTO_CLARO);
         lblPassword.setText("Contraseña: ");
 
-        btnRegistro.setIcon(UIUtils.getScaledIcon("img/add_icon.png", 20, 20));
-        btnRegistro.setText("Registro");
-        UIUtils.configurarBoton(btnRegistro, Colores.AZUL_CIELO);
-        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroActionPerformed(evt);
-            }
-        });
+        
 
         btnLogin.setIcon(UIUtils.getScaledIcon("img/login_icon.png", 20, 20));
         btnLogin.setText("Ingresar");
@@ -123,7 +116,7 @@ public class GUI_Login extends javax.swing.JFrame {
                         .addComponent(lblTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     
                         .addGap(40, 40, 40)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +152,7 @@ public class GUI_Login extends javax.swing.JFrame {
                     .addComponent(lblPassword))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -211,7 +204,7 @@ public class GUI_Login extends javax.swing.JFrame {
     }
 
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegistro;
+    
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblLogo; // Nuevo JLabel para el logo
     private javax.swing.JLabel lblLogin;
