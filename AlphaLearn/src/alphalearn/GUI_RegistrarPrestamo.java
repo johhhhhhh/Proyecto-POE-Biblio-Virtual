@@ -1,16 +1,22 @@
 package alphalearn;
 
 import java.awt.Cursor;
+import java.util.Set;
 import java.util.Stack;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class GUI_RegistrarPrestamo extends javax.swing.JFrame {
     private final Stack<Prestamo> pilaPrestamos;
+    private final Stack<Alumno> pilaAlumnos;
+    private final Stack<Libro> pilaLibros;
     
-    public GUI_RegistrarPrestamo(Stack<Prestamo> pila) {
+    
+      public GUI_RegistrarPrestamo(Stack<Prestamo> pila, Stack<Alumno> alumnos, Stack<Libro> libros) {
         initComponents();
         this.pilaPrestamos = pila;
+        this.pilaAlumnos = alumnos;
+        this.pilaLibros = libros;
         setCursors();
         this.setLocationRelativeTo(null);
     }
@@ -20,6 +26,23 @@ public class GUI_RegistrarPrestamo extends javax.swing.JFrame {
         btnEliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnRegresar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
+private Alumno buscarAlumnoPorMatricula(String matricula) {
+    for (Alumno a : pilaAlumnos) {
+        if (a.getMatricula().equals(matricula)) {
+            return a;
+        }
+    }
+    return null;
+}
+
+private Libro buscarLibroPorISBN(String isbn) {
+    for (Libro l : pilaLibros) {
+        if (l.getIsbn().equals(isbn)) {
+            return l;
+        }
+    }
+    return null;
+}
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
@@ -165,19 +188,34 @@ public class GUI_RegistrarPrestamo extends javax.swing.JFrame {
     }
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            Prestamo prestamo = new Prestamo(
-                txtID.getText(),
-                txtMatricula.getText(),
-                txtISBN.getText(),
-                txtFecha.getText()
-            );
-            pilaPrestamos.push(prestamo);
-            limpiarCampos();
-            JOptionPane.showMessageDialog(this, "Préstamo registrado con éxito");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar préstamo");
-        }
+     String matricula = txtMatricula.getText();
+    String isbn = txtISBN.getText();
+    
+   Alumno alumno = buscarAlumnoPorMatricula(matricula);
+if (alumno == null) {
+    JOptionPane.showMessageDialog(this, "El alumno no está registrado");
+    return;
+}
+
+Libro libro = buscarLibroPorISBN(isbn);
+if (libro == null) {
+    JOptionPane.showMessageDialog(this, "El libro no está registrado");
+    return;
+}
+    
+    try {
+        Prestamo prestamo = new Prestamo(
+            txtID.getText(),
+            matricula,
+            isbn,
+            txtFecha.getText()
+        );
+        pilaPrestamos.push(prestamo);
+        limpiarCampos();
+        JOptionPane.showMessageDialog(this, "Préstamo registrado con éxito");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar préstamo");
+    }
     }
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,11 +239,14 @@ public class GUI_RegistrarPrestamo extends javax.swing.JFrame {
         txtFecha.setText("");
     }
     
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new GUI_RegistrarPrestamo(new Stack<>()).setVisible(true);
-        });
-    }
+  public static void main(String args[]) {
+    java.awt.EventQueue.invokeLater(() -> {
+        Stack<Alumno> alumnos = new Stack<>();
+        Stack<Libro> libros = new Stack<>();
+
+        new GUI_RegistrarPrestamo(new Stack<>(), alumnos, libros).setVisible(true);
+    });
+}
 
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
