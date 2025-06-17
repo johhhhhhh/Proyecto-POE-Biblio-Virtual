@@ -214,7 +214,7 @@ public class GUI_Menu extends javax.swing.JFrame {
     }
 
     private void PrestamosRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
-        new GUI_RegistrarPrestamo(pilaPrestamos).setVisible(true);
+        new GUI_RegistrarPrestamo(pilaPrestamos, pilaAlumnos, pilaLibros).setVisible(true);
         dispose();
     }
 
